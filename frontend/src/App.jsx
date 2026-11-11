@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import StaffDashboard from './StaffDashboard'
 
+// API URL
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+
 // MENU PRODUCT IMAGES
 const defaultMenuImage =
   'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=600'
@@ -44,7 +47,7 @@ function App() {
 
       try {
 
-        const response = await fetch('http://localhost:5000/api/menu')
+        const response = await fetch(`${API}/menu`)
 
         if (!response.ok) {
           throw new Error(`Menu request failed: ${response.status}`)
@@ -172,7 +175,7 @@ function App() {
     try {
 
       // SEND THE ORDER TO THE BACKEND
-      const response = await fetch('http://localhost:5000/api/orders', {
+      const response = await fetch(`${API}/orders`, {
 
         method: 'POST',
 
